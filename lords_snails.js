@@ -105,7 +105,7 @@ var d_leaderboard = [
 ];	
 
 /* UTILITIES */
-/*
+
 //Truncates ETH value to 4 decimals
 function formatEthValue(ethstr){
     return parseFloat(parseFloat(ethstr).toFixed(4));
@@ -127,7 +127,7 @@ function formatEthAdr(adr){
 function numberWithSpaces(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
-
+/*
 //Conversion of Date to hh:mm:ss
 var datetext;
 
@@ -206,8 +206,7 @@ function mainUpdate(){
 	updateSnailPot();
 	updateRoundPot();
 	updateThronePot();
-	updatePlayerBalance();
-	updatePlayerEgg();
+	updatePlayerInfo();
 	updateText();
 	//runLog();
 	setTimeout(slowUpdate, 4000);
