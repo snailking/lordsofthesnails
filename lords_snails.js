@@ -1,6 +1,6 @@
-var contractAddress=""; //ROPSTEN 1
+var contractAddress="0xe483C56756bB58749CE1288A248aCeB0bB470959"; //ROPSTEN 1
 
-/* WEB3 DETECTION */
+//-- WEB3 DETECTION --//
 var web3;
 
 window.addEventListener("load", function() {
@@ -23,9 +23,9 @@ window.addEventListener("load", function() {
         web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/f423492af8504d94979d522c3fbf3794"));
     }
 });
-
+/*
 /* MODAL */
-
+/*
 // Get the modals
 var claim_modal = document.getElementById("claimmodal");
 var grow_modal = document.getElementById("growmodal");
@@ -57,7 +57,7 @@ window.onclick = function(event) {
 }
 
 /* PAST EVENT LOG */
-
+/*
 var timeLaunch = 1546099245;
 var launchBlock = 6974738;
 
@@ -79,60 +79,23 @@ var timeNow;
 var a_contractBalance;
 var a_gameRound;
 var a_roundPot;
-var a_treePot;
-var a_wonkPot;
+var a_snailPot;
 var a_thronePot;
-var a_jackPot;
-var a_pecanToWin = 0;
-var a_pecanGiven = 0;
-var a_pecanLeft = 0;
-var a_lastRootPlant;
 var a_playerBalance;
-var a_playerRound;
-var a_playerBoost;
-var a_playerTree = 0;
-var a_playerPecan = 0;
-var a_playerLastClaim;
-var a_playerEtherShare;
-var a_playerPecanShare = 0;
-var a_rootPecanForOneEther = 0;
-var a_tradeReward;
-
-var f_pecan;
-var f_root;
+var a_playerEgg = 0;
 
 var m_account = "waiting for web3";
 
 var doc_contractBalance = document.getElementById('contractbalance');
 var doc_gameRound = document.getElementById('gameround');
 var doc_roundPot = document.getElementById('roundpot');
-var doc_treePot = document.getElementById('treepot');
-var doc_wonkPot = document.getElementById('wonkpot');
+var doc_snailPot = document.getElementById('snailpot');
 var doc_thronePot = document.getElementById('thronepot');
-var doc_jackPot = document.getElementById('jackpot');
-var doc_pecanToWin = document.getElementById('pecantowin');
-var doc_pecanGiven = document.getElementById('pecangiven');
-var doc_pecanLeft = document.getElementById('pecanleft');
-var doc_lastRootPlant = document.getElementById('lastrootplant');
 var doc_playerBalance = document.getElementById('playerbalance');
-var doc_playerBoost = document.getElementById('playerboost');
-var doc_playerTree = document.getElementById('playertree');
-var doc_playerPecan = document.getElementById('playerpecan');
-var	doc_playerEtherShare = document.getElementById('playerethershare');
-var	doc_playerPecanShare = document.getElementById('playerpecanshare');
-var	doc_rootPecanForOneEther = document.getElementById('rootpecanforoneether');
-var doc_playerLastClaim = document.getElementById('playerlastclaim');
-var doc_fieldPecan = document.getElementById('fieldPecan');
-var doc_fieldRoot = document.getElementById('fieldRoot');
-var doc_tradeReward = document.getElementById('tradereward');
-var doc_tradeReward2 = document.getElementById('tradereward2');
-var doc_progressBar = document.getElementById('progressbarpecan');
-var doc_fieldPecanReward = document.getElementById('fieldpecanreward');
-var doc_boostReady = document.getElementById('boostready');
-//var doc_launchTimer = document.getElementById('launchtimer');
+var doc_playerEgg = document.getElementById('playeregg');
 
 //Leaderboard Array
-
+/*
 var d_leaderboard = [
 	{ address: "0x0000000022223333444455556666777788889999", tree: 0, pecan: 0, rank: 1 },
 	{ address: "0x0000111122223333444455556666777788889999", tree: 0, pecan: 0, rank: 2 },
@@ -142,7 +105,7 @@ var d_leaderboard = [
 ];	
 
 /* UTILITIES */
-
+/*
 //Truncates ETH value to 4 decimals
 function formatEthValue(ethstr){
     return parseFloat(parseFloat(ethstr).toFixed(4));
@@ -233,40 +196,23 @@ function maxField(){
 /* UPDATE */
 
 function initUpdate(){
-	slowUpdate();
-	fastUpdate();
-	refreshDataSlow();
-	checkLaunch();
+	mainUpdate();
 }	
 
-function slowUpdate(){
+function mainUpdate(){
 	updateEthAccount();
 	updateContractBalance();
 	updateGameRound();
-	updateTreePot();
-	updateWonkPot();
-	updateJackPot();
+	updateSnailPot();
+	updateRoundPot();
 	updateThronePot();
-	updatePecanToWin();
-	updatePecanGiven();
-	updateLastRootPlant();
 	updatePlayerBalance();
-	updatePlayerRound();
-	updatePlayerBoost();
-	updatePlayerTree();
-	updatePlayerPecan();
-	updatePlayerClaim();
-	updatePlayerEtherShare();
-	updatePlayerPecanShare();
-	updateRootPecan();
-	updatePlayerClaim();
-	computePecanLeft();
-	computeProgressBar();
+	updatePlayerEgg();
 	updateText();
 	//runLog();
 	setTimeout(slowUpdate, 4000);
 }
-
+/*
 function fastUpdate(){
 	updateField();
 	fastupdateRootPecan();
@@ -402,30 +348,18 @@ function checkLeaderPecan4(){
 		d_leaderboard[4].pecan = result;
 	});
 }
-
+*/
 //Updates all text from web3 calls
 function updateText(){
 	doc_contractBalance.innerHTML = a_contractBalance;
 	doc_gameRound.innerHTML = a_gameRound;
-	doc_roundPot.innerHTML = (a_jackPot / 5).toFixed(4);
-	doc_treePot.innerHTML = a_treePot;
-	doc_wonkPot.innerHTML = a_wonkPot;
+	doc_snailPot.innerHTML = a_snailPot;
+	doc_roundPot.innerHTML = a_roundPot;
 	doc_thronePot.innerHTML = a_thronePot;
-	doc_jackPot.innerHTML = a_jackPot;
-	doc_pecanToWin.innerHTML = numberWithSpaces(a_pecanToWin);
-	doc_pecanGiven.innerHTML = numberWithSpaces(a_pecanGiven);
-	doc_pecanLeft.innerHTML = numberWithSpaces(a_pecanLeft);
-	doc_lastRootPlant.innerHTML = computeLastRootPlant();
 	doc_playerBalance.innerHTML = a_playerBalance;
-	doc_playerBoost.innerHTML = a_playerBoost;
-	doc_playerTree.innerHTML = numberWithSpaces(a_playerTree);
-	doc_playerPecan.innerHTML = numberWithSpaces(a_playerPecan);
-	doc_playerEtherShare.innerHTML = a_playerEtherShare;
-	doc_playerPecanShare.innerHTML = numberWithSpaces(a_playerPecanShare);
-	doc_rootPecanForOneEther.innerHTML = numberWithSpaces(a_rootPecanForOneEther);
-	timeSincePlayerClaim();
+	doc_playerEgg.innerHTML = a_playerEgg;
 }
-
+/*
 function updateField(){
 	f_pecan = document.getElementById('fieldPecan').value;
 	f_root = document.getElementById('fieldRoot').value;
@@ -434,7 +368,7 @@ function updateField(){
 }
 
 /* CALCULATIONS */
-
+/*
 function computeLastRootPlant(){
 	var _now = Math.round((new Date()).getTime() / 1000);
 	var _timeSinceLast = parseFloat(_now - a_lastRootPlant);
@@ -472,6 +406,7 @@ function computeWonkWonk(){
 }
 
 /* FAST LOCAL UPDATES */
+/*
 function fastupdateRootPecan(){
 	timeNow = (new Date).getTime();
 	////console.log(timeNow);
@@ -517,29 +452,22 @@ function updateContractBalance(){
 
 //Current game round
 function updateGameRound(){
-	gameRound(function(result) {
+	round(function(result) {
 		a_gameRound = result;
 	});
 }
 
 //Current tree pot
-function updateTreePot(){
-	treePot(function(result) {
-		a_treePot = formatEthValue(web3.fromWei(result,'ether'));
+function updateSnailPot(){
+	snailPot(function(result) {
+		a_snailPot = formatEthValue(web3.fromWei(result,'ether'));
 	});
 }
 
-//Current wonk pot
-function updateWonkPot(){
-	wonkPot(function(result) {
-		a_wonkPot = formatEthValue(web3.fromWei(result,'ether'));
-	});
-}
-
-//Current jackpot
-function updateJackPot(){
-	jackPot(function(result) {
-		a_jackPot = formatEthValue(web3.fromWei(result,'ether'));
+//Current roundpot
+function updateRoundPot(){
+	roundPot(function(result) {
+		a_roundPot = formatEthValue(web3.fromWei(result,'ether'));
 	});
 }
 
@@ -550,93 +478,16 @@ function updateThronePot(){
 	});
 }
 
-//Current pecans to win
-function updatePecanToWin(){
-	pecanToWin(function(result) {
-		a_pecanToWin = result;
-	});
-}
-
-//Pecans given
-function updatePecanGiven(){
-	pecanGiven(function(result) {
-		a_pecanGiven = result;
-	});
-}
-
-//Last root plant
-function updateLastRootPlant(){
-	lastRootPlant(function(result) {
-		a_lastRootPlant = result;
-	});
-}
-
-//Current balance for player
-function updatePlayerBalance(){
-	GetMyBalance(function(result) {
-		a_playerBalance = formatEthValue(web3.fromWei(result,'ether'));
-	});
-}
-
-//Current round for player
-function updatePlayerRound(){
-	GetMyRound(function(result) {
-		a_playerRound = result;
-	});
-}		
-
-//Current round for player
-function updatePlayerBoost(){
-	GetMyBoost(function(result) {
-		a_playerBoost= result;
-	});
-}		
-
-//Current treeSize for player
-function updatePlayerTree(){
-	GetTree(m_account, function(result) {
-		a_playerTree = result;
-	});
-}
-
-//Current pecans for player
-function updatePlayerPecan(){
-	GetPecan(m_account, function(result) {
-		a_playerPecan = result;
-	});
-}		
-
-//Last claim for player
-function updatePlayerClaim(){
-	GetMyLastClaim(function(result) {
-		a_playerLastClaim = result;
-	});
-}	
-
-//Compute EtherShare
-function updatePlayerEtherShare(){
-	ComputeEtherShare(m_account, function(result) {
-		a_playerEtherShare = parseFloat(web3.fromWei(result,'ether')).toFixed(10);
-	});
-}
-
-//Compute PecanShare
-function updatePlayerPecanShare(){
-	ComputePecanShare(m_account, function(result) {
-		a_playerPecanShare = result;
-	});
-}
-
-//Compute PlantPecan
-function updateRootPecan(){
-	var weitospend =  web3.toWei(1,'ether');
-	ComputePlantPecan(weitospend, function(result) {
-		a_rootPecanForOneEther = result;
+//Current info for player (eggs, balance)
+function updatePlayerInfo(){
+	GetPlayerInfo(m_account, function(result) {
+		a_playerBalance = formatEthValue(web3.fromWei(result.args._balance,'ether'));
+		a_playerEgg = result.args._egg;
 	});
 }
 
 /* WEB3 TRANSACTIONS */
-
+/*
 //Check number of Pecans isn't above player max
 function webCheckPecan(){
 	if(f_pecan > a_playerPecan){
@@ -719,569 +570,348 @@ function webPayThrone(){
 
 /* CONTRACT ABI */
 
-abiDefinition=[{"constant": true,"inputs": [],"name": "GetMyBalance","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "playerRound","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "PlantRoot","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "treeSize","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "adr","type": "address"}],"name": "GetPecan","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [{"name": "_pecanGift","type": "uint256"}],"name": "GivePecan","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "pecanToWin","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "adr","type": "address"}],"name": "ComputeEtherShare","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "jackPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "PayThrone","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "playerBalance","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "GrowTree","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "lastClaim","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputePecanToWin","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "adr","type": "address"}],"name": "ComputePecanShare","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "pecan","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "_pecanGift","type": "uint256"}],"name": "ComputeWonkTrade","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyLastClaim","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyBoost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "treePot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "WithdrawBalance","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "gameRound","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "boost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "wonkPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputePlantBoostFactor","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "thronePot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyRound","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "adr","type": "address"}],"name": "GetTree","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "_msgValue","type": "uint256"}],"name": "ComputePlantPecan","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "pecanGiven","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "adr","type": "address"}],"name": "ComputeShareBoostFactor","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "lastRootPlant","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "ClaimShare","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"inputs": [],"payable": false,"stateMutability": "nonpayable","type": "constructor"},{"payable": true,"stateMutability": "payable","type": "fallback"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "pecan","type": "uint256"},{"indexed": false,"name": "treesize","type": "uint256"}],"name": "PlantedRoot","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "pecan","type": "uint256"}],"name": "GavePecan","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "pecan","type": "uint256"}],"name": "ClaimedShare","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "pecan","type": "uint256"},{"indexed": false,"name": "boost","type": "uint256"}],"name": "GrewTree","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "WonRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "WithdrewBalance","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "PaidThrone","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "BoostedPot","type": "event"}]
+abiDefinition=[{"constant": true,"inputs": [{"name": "_player","type": "address"}],"name": "GetPlayerInfo","outputs": [{"name": "_egg","type": "uint256"},{"name": "_balance","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "_flip","type": "bool"},{"name": "_id","type": "uint256"}],"name": "ComputeEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "round","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "_id","type": "uint256"}],"name": "GetSnailInfo","outputs": [{"name": "_level","type": "uint256"},{"name": "_lastSnag","type": "uint256"},{"name": "_owner","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [{"name": "_id","type": "uint256"}],"name": "Snag","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [{"name": "_id","type": "uint256"}],"name": "GetLordInfo","outputs": [{"name": "_level","type": "uint256"},{"name": "_owner","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "roundPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "lastFlip","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [{"name": "_id","type": "uint256"}],"name": "GrabSnail","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": false,"inputs": [],"name": "PayThrone","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [{"name": "_id","type": "uint256"}],"name": "BecomeLord","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "snailPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeLordBonus","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BeginRound","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "WithdrawBalance","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "thronePot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "_id","type": "uint256"}],"name": "ComputeSnailCost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "_id","type": "uint256"}],"name": "ComputeLordCost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "nextRoundStart","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "victoryEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "lastLordFlip","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "gameActive","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"inputs": [],"payable": false,"stateMutability": "nonpayable","type": "constructor"},{"payable": true,"stateMutability": "payable","type": "fallback"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "round","type": "uint256"}],"name": "WonRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": false,"name": "round","type": "uint256"}],"name": "StartedRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "snail","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "egg","type": "uint256"},{"indexed": false,"name": "level","type": "uint256"}],"name": "GrabbedSnail","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "snail","type": "uint256"},{"indexed": false,"name": "egg","type": "uint256"}],"name": "Snagged","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "lord","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "egg","type": "uint256"},{"indexed": false,"name": "level","type": "uint256"}],"name": "BecameLord","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "WithdrewBalance","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "PaidThrone","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "BoostedPot","type": "event"}]
 
 var contractAbi = web3.eth.contract(abiDefinition);
 var myContract = contractAbi.at(contractAddress);
-	
-function GetMyBalance(callback){
 
-    var outputData = myContract.GetMyBalance.getData();
+function GetPlayerInfo(_player,callback){ 
+    var outputData = myContract.GetPlayerInfo.getData(_player);
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetMyBalance ',web3.toDecimal(result));
+            console.log('GetPlayerInfo ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function playerRound(callback){
-    
-    
-    var outputData = myContract.playerRound.getData();
+function ComputeEgg(_flip,_id,callback){  
+    var outputData = myContract.ComputeEgg.getData(_flip,_id);
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('playerRound ',web3.toDecimal(result));
+            console.log('ComputeEgg ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function PlantRoot(eth,callback){
-    
-    
-    var outputData = myContract.PlantRoot.getData();
+function round(callback){ 
+    var outputData = myContract.round.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('round ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function GetSnailInfo(_id,callback){
+    var outputData = myContract.GetSnailInfo.getData(_id);
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetSnailInfo ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function Snag(_id,eth,callback){ 
+    var outputData = myContract.Snag.getData(_id);
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
         if(!error){
-            //console.log('PlantRoot ',result);
+            console.log('Snag ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function treeSize(callback){
-    
-    
-    var outputData = myContract.treeSize.getData();
+function GetLordInfo(_id,callback){ 
+    var outputData = myContract.GetLordInfo.getData(_id);
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('treeSize ',web3.toDecimal(result));
+            console.log('GetLordInfo ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function GetPecan(adr,callback){
-    var outputData = myContract.GetPecan.getData(adr);
+function roundPot(callback){ 
+    var outputData = myContract.roundPot.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetPecan ',web3.toDecimal(result));
+            console.log('roundPot ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function GivePecan(_pecanGift,callback){   
-    var outputData = myContract.GivePecan.getData(_pecanGift);
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
+function lastFlip(callback){
+    var outputData = myContract.lastFlip.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GivePecan ',result);
+            console.log('lastFlip ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function GrabSnail(_id,eth,callback){  
+    var outputData = myContract.GrabSnail.getData(_id);
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
+    function(error,result){
+        if(!error){
+            console.log('GrabSnail ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function pecanToWin(callback){   
-    var outputData = myContract.pecanToWin.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('pecanToWin ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ComputeEtherShare(adr,callback){
-    
-    
-    var outputData = myContract.ComputeEtherShare.getData(adr);
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('ComputeEtherShare ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function jackPot(callback){
-    
-    
-    var outputData = myContract.jackPot.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('jackPot ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
 function PayThrone(callback){
-    
-    
     var outputData = myContract.PayThrone.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('PayThrone ',result);
+            console.log('PayThrone ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function playerBalance(callback){
-    
-    
-    var outputData = myContract.playerBalance.getData();
+function BecomeLord(_id,eth,callback){ 
+    var outputData = myContract.BecomeLord.getData(_id);
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
+    function(error,result){
+        if(!error){
+            console.log('BecomeLord ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function snailPot(callback){ 
+    var outputData = myContract.snailPot.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('playerBalance ',web3.toDecimal(result));
+            console.log('snailPot ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function GrowTree(callback){
-    
-    
-    var outputData = myContract.GrowTree.getData();
+function ComputeLordBonus(callback){
+    var outputData = myContract.ComputeLordBonus.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('ComputeLordBonus ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function BeginRound(callback){ 
+    var outputData = myContract.BeginRound.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GrowTree ',result);
+            console.log('BeginRound ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function lastClaim(callback){
-    
-    
-    var outputData = myContract.lastClaim.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('lastClaim ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ComputePecanToWin(callback){
-    
-    
-    var outputData = myContract.ComputePecanToWin.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('ComputePecanToWin ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ComputePecanShare(adr,callback){
-    
-    
-    var outputData = myContract.ComputePecanShare.getData(adr);
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('ComputePecanShare ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function pecan(callback){
-    
-    
-    var outputData = myContract.pecan.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('pecan ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ComputeWonkTrade(_pecanGift,callback){
-    
-    
-    var outputData = myContract.ComputeWonkTrade.getData(_pecanGift);
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('ComputeWonkTrade ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function GetMyLastClaim(callback){
-    
-    
-    var outputData = myContract.GetMyLastClaim.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('GetMyLastClaim ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function GetMyBoost(callback){
-    
-    
-    var outputData = myContract.GetMyBoost.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('GetMyBoost ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function treePot(callback){
-    
-    
-    var outputData = myContract.treePot.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('treePot ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function WithdrawBalance(callback){
-    
-    
+function WithdrawBalance(callback){ 
     var outputData = myContract.WithdrawBalance.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('WithdrawBalance ',result);
+            console.log('WithdrawBalance ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function gameRound(callback){
-    
-    
-    var outputData = myContract.gameRound.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('gameRound ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function boost(callback){
-    
-    
-    var outputData = myContract.boost.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('boost ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function wonkPot(callback){
-    
-    
-    var outputData = myContract.wonkPot.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('wonkPot ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ComputePlantBoostFactor(callback){
-    
-    
-    var outputData = myContract.ComputePlantBoostFactor.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('ComputePlantBoostFactor ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function thronePot(callback){
-    
-    
+function thronePot(callback){ 
     var outputData = myContract.thronePot.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('thronePot ',web3.toDecimal(result));
+            console.log('thronePot ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function GetMyRound(callback){
-    
-    
-    var outputData = myContract.GetMyRound.getData();
+function ComputeSnailCost(_id,callback){ 
+    var outputData = myContract.ComputeSnailCost.getData(_id);
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetMyRound ',web3.toDecimal(result));
+            console.log('ComputeSnailCost ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function GetTree(adr,callback){
-    
-    
-    var outputData = myContract.GetTree.getData(adr);
+function ComputeLordCost(_id,callback){ 
+    var outputData = myContract.ComputeLordCost.getData(_id);
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetTree ',web3.toDecimal(result));
+            console.log('ComputeLordCost ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function ComputePlantPecan(_msgValue,callback){
-    
-    
-    var outputData = myContract.ComputePlantPecan.getData(_msgValue);
+function nextRoundStart(callback){   
+    var outputData = myContract.nextRoundStart.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ComputePlantPecan ',web3.toDecimal(result));
+            console.log('nextRoundStart ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function pecanGiven(callback){
-    
-    
-    var outputData = myContract.pecanGiven.getData();
+function victoryEgg(callback){ 
+    var outputData = myContract.victoryEgg.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('pecanGiven ',web3.toDecimal(result));
+            console.log('victoryEgg ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function ComputeShareBoostFactor(adr,callback){
-    
-    
-    var outputData = myContract.ComputeShareBoostFactor.getData(adr);
+function lastLordFlip(callback){   
+    var outputData = myContract.lastLordFlip.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ComputeShareBoostFactor ',web3.toDecimal(result));
+            console.log('lastLordFlip ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
 
 
-function lastRootPlant(callback){
-    
-    
-    var outputData = myContract.lastRootPlant.getData();
+function gameActive(callback){  
+    var outputData = myContract.gameActive.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('lastRootPlant ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            //console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ClaimShare(callback){
-    
-    
-    var outputData = myContract.ClaimShare.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            //console.log('ClaimShare ',result);
+            console.log('gameActive ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            console.log('transaction failed with ',error.message)
         }
     });
 }
+
+
+
 
 
 
 
 /* EVENT WATCH */
-
+/*
 //Store transaction hash for each event, and check before executing result, as web3 events fire twice
 var storetxhash = [];
 
@@ -1337,7 +967,7 @@ function computeLeaderboard() {
 }
 
 /* EVENTS */
-
+/*
 var logboxscroll = document.getElementById('logboxscroll');
 var eventlogdoc = document.getElementById("eventlog");
 
