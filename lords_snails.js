@@ -715,7 +715,8 @@ function PayThrone(callback){
     function(error,result){
         if(!error){
             console.log('PayThrone ',result);
-            callback(result)
+            callback(result._balance);
+			callback(result._egg);
         }
         else{
             console.log('transaction failed with ',error.message)
