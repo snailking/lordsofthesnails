@@ -209,7 +209,7 @@ function mainUpdate(){
 	updatePlayerInfo();
 	updateText();
 	//runLog();
-	setTimeout(slowUpdate, 4000);
+	setTimeout(mainUpdate, 4000);
 }
 /*
 function fastUpdate(){
@@ -480,8 +480,8 @@ function updateThronePot(){
 //Current info for player (eggs, balance)
 function updatePlayerInfo(){
 	GetPlayerInfo(m_account, function(result) {
-		a_playerBalance = formatEthValue(web3.fromWei(result.args._balance,'ether'));
-		a_playerEgg = result.args._egg;
+		a_playerBalance = formatEthValue(web3.fromWei(result._balance,'ether'));
+		a_playerEgg = result._egg;
 	});
 }
 
