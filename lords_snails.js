@@ -580,7 +580,7 @@ function GetPlayerInfo(_player,callback){
     function(error,result){
         if(!error){
             console.log('GetPlayerInfo ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
+            callback(result)
         }
         else{
             console.log('transaction failed with ',error.message)
