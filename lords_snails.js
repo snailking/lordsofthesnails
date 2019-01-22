@@ -480,8 +480,8 @@ function updateThronePot(){
 //Current info for player (eggs, balance)
 function updatePlayerInfo(){
 	GetPlayerInfo(m_account, function(result) {
-		a_playerBalance = formatEthValue(web3.fromWei(result._balance,'ether'));
 		a_playerEgg = result._egg;
+		a_playerBalance = formatEthValue(web3.fromWei(result._balance,'ether'));		
 	});
 }
 
