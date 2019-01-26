@@ -1,0 +1,8 @@
+Achilles - Aristotle = Red
+Daedalus - Diogenes = Orange
+Heracles - Heraclitus = Yellow
+Icarus - Chrysippus = Green
+Jason - Socrates = Blue
+Odysseus - Zeno = Purple
+Perseus - Plato = Black
+Theseus - Thales = White

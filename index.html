@@ -10,14 +10,154 @@
 		<!-- CSS -->
 		<link rel="stylesheet" type="text/css" href="theme_bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="theme_animista.css">
-		<link rel="stylesheet" type="text/css" href="theme_snailtree.css">		
+		<link rel="stylesheet" type="text/css" href="theme_lords.css">		
 	</head>
 	
 	<body>
 		<!-- TITLE -->
-		<div class="container" align="center">
-			<h1>LORDS OF THE SNAILS</h1>
-			<h3>Coming soon! Saturday 2th February, 07 PM UTC</h3>
+		<div class="jumbotron border6" align="center">
+			<img src="img/logo.png">
+			<h2>Coming to you Saturday the 2th of February, at 07 PM UTC!</h1>
+			<div class="snail">
+				<a href="#info"><img height="64" src="img/question_circle.png"></a>
+				<a href="https://ropsten.etherscan.io/address/0x1443B778622e66924Af7B64c3dfb1A8B700AB0E8" target="_blank"><img height="64" src="img/contract_circle.png"></a>
+				<a href="https://discord.gg/JU8P4Ru" target="_blank"><img height="64" src="img/discord_circle.png"></a>
+				<a href="https://twitter.com/EtherSnailFarm" target="_blank"><img height="64" src="img/twitter_circle.png"></a>
+				<a href="https://reddit.com/r/snailthrone" target="_blank"><img height="64" src="img/reddit_circle.png"></a>
+				<a href="https://medium.com/@thesnailking/lords-of-the-snails-hot-potato-dapp-the-right-way-f1de6646065" target="_blank"><img height="64" src="img/medium_circle.png"></a>
+				<a href="https://t.me/snailthrone" target="_blank"><img height="64" src="img/telegram_circle.png"></a>
+				<a href="https://snailking.github.io/snailthrone" target="_blank"><img height="64" src="img/snailthrone_circle.png"></a>
+			</div>
+		</div><br>
+		<!-- QUICK START -->
+		<div id="info" class="jumbotron border6">
+			<h3 align="center">HOW TO PLAY</h3><br>
+			<h5>Lords of the Snails is a hot potato game played in rounds.</h5>
+			<h5>Get enough Eggs to earn the prize.</h5>
+			<h5>Once you reach the requirement, you win and all your Eggs are consumed.</h5>
+			<br>
+			<div class="info">
+				<h4>WHILE THE ROUND IS ACTIVE</h4>
+			</div>
+			<br>
+			<h5>1) Grab a Snail to earn his Eggs.</h5>
+			<h6>- Grabbing a Snail raises his level. Higher level Snail = higher ETH cost and higher Egg production.</h5>
+			<h6>- Hibernation: the longer the game goes without anyone Grabbing any Snail, the bigger Egg bonus</h5>
+			<h6>- Any given Snail can only be owned by one player, but you can own several different Snails at once.</h5>
+			<br>
+			<h5>2) While you own a Snail, Snag his Eggs at your convenience.</h5>
+			<h6>- Snagging comes with a small ETH cost, and doesn't give you the Hibernate bonus.
+			<h6>- You can Grab your own Snail if you want the Hibernate bonus.
+			<h6>- If someone else Grabs your Snail, you gain no Eggs, but you get the ETH you spent back!</h5>
+			<br>
+			<div class="info">
+				<h4>ONCE ANY PLAYER REACHES THE REQUIRED AMOUNT OF EGGS, THE ROUND IS OVER</h4>
+			</div>
+			<br>
+			<h5>The game goes on downtime, during which players can become Lords.</h5>
+			<h6>Being a Lord allows you to own the corresponding Snail at the beginning of a round.</h5>
+			<h6>You can then Snag immediately... Or get "free" ETH, if someone else Grabs your Snail!</h5>
+			<br>
+			<h5>Only one player can be a specific Lord, but you can be several Lords at once.</h5>
+			<h6>The ETH cost of a given Lord increases each time a new player claims it.</h5>
+			<h6>On a claim, the previous Lord receives the ETH he spent, plus a small bonus.</h5>
+			<br>
+			<h5>Becoming a Lord also gives you a bonus amount of Eggs.</h5>
+			<h6>This bonus rises while nobody claims a Lord.</h5>
+			<h6>It's possible to earn enough Eggs to win this way, but you'll have to wait for the next round to start and then Snag or Grab.</h5>
+			<br>
+			<div class="info">
+				<h4>ONE DAY LATER, A NEW ROUND BEGINS</h4>
+			</div>
+			<br>
+			<h5>After 24 hours, any player can start the new round.</h5>
+			<h6>Players who didn't win keep their accumulated Eggs.</h5>
+			<h6>However, the number of Eggs required to win increases.</h5>
+			<h6>Snail level, cost, Eggs and Egg production are reset to their base level.</h5>
+			<h6>Each Lord receives their Snail.</h5>
+			<br>
+			<h5>The game runs forever, as long as players choose to start it!</h5>
+			<br>
+			<div class="info">
+				<h4>SNAILTHRONE</h4>
+			</div>
+			<br>
+			<h5>Lords of the Snails is part of the SnailThrone ecosystem.</h5>
+			<h6>Part of the ETH used in Lords of the Snails goes to the SnailThrone pot.</h5>
+			<h6>Any player can send this pot at no cost to the SnailThrone contract.</h5>
+			<br>
+			<h5>SnailThrone players receive their share of the ETH in the form of dividends.</h5>
+			<br><br>
+			<h3 align="center"><a href="https://snailking.github.io/snailthrone" target="_blank">>> CHECK OUT SNAILTHRONE <<</a>
+			<br>
+		</div>
+		<br>
+		<!-- GAME MECHANICS -->
+		<div class="jumbotron">
+			<h3 align="center">GAME MECHANICS</h3><br>
+			<div class="info">
+				<h4>ROUNDS</h4>
+			</div>
+			<br>
+			<h6>At the beginning of each round, the winning prize is set at 10% of the SnailPot.</h6>
+			<h6>The amount of Eggs required to win is set at 1 000 000 * Round.</h6>
+			<h6>On Round 8 with a SnailPot of 3 ETH, you'd need 8 000 000 Eggs to win, and your prize would be 0.3 ETH.</h6>
+			<h6>Rounds last until a player wins, then the 24 hours downtime period starts.</h6>
+			<br>
+			<div class="info">
+				<h4>SNAILS</h4>
+			</div>
+			<br>
+			<h6>Each Snail starts at LVL 1 on a new round.</h6>
+			<h6>Snails produce 1 Egg per second per level.</h6>
+			<h6>A LVL 3 Snail would produce 180 Eggs in a minute.</h6>
+			<br>
+			<h6>The cost of Grabbing a Snail is set at 0.02 ETH * (LVL + 1).</h6>
+			<h6>To Grab a LVL 3 Snail, you need 0.02 * (3 + 1) = 0.08 ETH.</h6>
+			<h6>All but 0.02 of that ETH is sent to the previous owner.</h6>
+			<br>
+			<h6>Snagging Eggs has a fixed cost of 0.002 ETH.</h6>
+			<h6>A Snag gives you the Snail's Eggs, without a bonus.</h6>
+			<h6>The Grab bonus is global, and rises by 1% every minute.</h6>
+			<h6>After one hour, a Snail with 1000 Eggs would pay out 1600 Eggs on a Grab.</h6>
+			<h6>Snails can only be Grabbed or Snagged while the round is active.</h6>
+			<br>
+			<div class="info">
+				<h4>LORDS</h4>
+			</div>
+			<br>
+			<h6>Lords start at a fixed cost of 0.2 ETH.</h6>
+			<h6>This cost rises by 0.1 ETH with each claim.</h6>
+			<h6>All but 0.08 of the ETH goes to the previous owner.</h6>
+			<br>
+			<h6>The Lord Egg bonus for Lords is similar to the Grab bonus.</h6>
+			<h6>As Lords don't produce Eggs directly, so this bonus is a flat rate.</h6>
+			<h6>The bonus is set at 4 Eggs per second per round.</h6>
+			<br>
+			<h6>On Round 8, after 4 hours without any claim, becoming the Lord would yield:</h6>
+			<h6>(4 * 60 * 60 * 4 * 8) = 460 800 Eggs
+			<h6>The bonus timer is reset on a round win, and downtime can never exceed 24 hours.</h6>
+			<br>
+			<div class="info">
+				<h4>ETHER SPLIT</h4>
+			</div>
+			<br>
+			<h6>Most of the ETH of Grab and Snag go into repaying the previous owner.</h6>
+			<h6>The remainder, as well as the 0.002 ETH fee of Snag, is split as such:</h6>
+			<h6>- 50% SnailPot</h6>
+			<h6>- 50% ThronePot</h6>
+			<br>
+			<h6>You read that right! SnailThrone players get to enjoy a good share of the profits.</h6>
+			<br>
+			<div class="row">
+				<div class="col-sm">
+				</div>
+				<div class="col-sm-1 snail" align="center">
+					<a href="#top"><img height="48" src="img/arrow_circle.png"></a>
+				</div>
+				<div class="col-sm">
+				</div>
+			</div>
 		</div>
 		<!-- JAVASCRIPT -->
 		<script src="lords_snails.js"></script>				
