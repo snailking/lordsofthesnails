@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Title, Favicon -->
+		<title>Lords of the Snails</title>
+		<link rel="shortcut icon" href="favicon.png" type="image/x-icon">		
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="theme_bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="theme_animista.css">
+		<link rel="stylesheet" type="text/css" href="theme_lords.css">		
+	</head>
+	
+	<body>
+		<!-- TITLE -->
+		<div class="jumbotron border6" align="center">
+			<img src="img/logo.png">
+			<h2>Hottest Potatoes since the Battle of Troy</h1>
+			<div class="snail">
+				<a href="#info"><img height="64" src="img/question_circle.png"></a>
+				<a href="https://ropsten.etherscan.io/address/0x1443B778622e66924Af7B64c3dfb1A8B700AB0E8" target="_blank"><img height="64" src="img/contract_circle.png"></a>
+				<a href="https://discord.gg/JU8P4Ru" target="_blank"><img height="64" src="img/discord_circle.png"></a>
+				<a href="https://twitter.com/EtherSnailFarm" target="_blank"><img height="64" src="img/twitter_circle.png"></a>
+				<a href="https://reddit.com/r/snailthrone" target="_blank"><img height="64" src="img/reddit_circle.png"></a>
+				<a href="https://medium.com/@thesnailking/lords-of-the-snails-hot-potato-dapp-the-right-way-f1de6646065" target="_blank"><img height="64" src="img/medium_circle.png"></a>
+				<a href="https://t.me/snailthrone" target="_blank"><img height="64" src="img/telegram_circle.png"></a>
+				<a href="https://snailking.github.io/snailthrone" target="_blank"><img height="64" src="img/snailthrone_circle.png"></a>
+			</div>
+		</div>
+		<br>
+		<!-- PRELAUNCH -->
+		<div class="jumbotron" align="center">
+			<h1>WELCOME!</h1>
+			<br>
+			<h3>Lords of the Snails will start on Saturday the 2th, at 07 PM UTC.</h3>
+			<br>
+			<h3>While you wait, take a look around and get familiar with the game.</h3>
+			<br>
+			<h3>You can switch to the Ropsten Network to test the game with virtual ETH.</h3>
+			<br>
+			<h3>Have fun!</h3>
+		</div><br>
+		<!-- ROUND INFO -->
+		<div class="jumbotron" align="center">
+			<h1>ROUND <span id="gameround">?</span> <span id="gameactive">?</h1><br>
+			<div class="info">
+				<h3><span id="gametext">?</h3>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm">
+					<h4>Round Prize</h3>
+					<h4><span id="roundpot">?</span> ETH</h3>
+				</div>
+				<div class="col-sm">
+					<h4><span id="leader">?</span> leads with</h3>
+					<h4><span id="leaderegg">?</span> Eggs</h3>
+				</div>
+				<div class="col-sm">
+					<h4>Victory Requirement</h3>
+					<h4><span id="winreq">?</span> Eggs</h3>
+				</div>
+			</div>
+		</div>
+		<br>
+		<!-- LEADERBOARD AND EVENTS -->
+		<div class="jumbotron border6">
+			<h3 align="center">EGGKINGS</h3>
+			<div class="row" align="center">
+				<div class="col-sm snail">
+					<h4><span id="eggking1">?</span></h5>
+				</div>
+				<div class="col-sm snail">
+					<h4><span id="eggking2">?</span></h4>
+				</div>
+				<div class="col-sm snail">
+					<h4><span id="eggking3">?</span></h4>
+				</div>
+				<div class="col-sm snail">
+					<h4><span id="eggking4">?</span></h4>
+				</div>
+				<div class="col-sm snail">
+					<h4><span id="eggking5">?</span></h4>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm" align="left">
+					<h3>EVENTS</h3>
+				</div>
+				<div class="col-sm" align="right">
+					<button type="button" class="btn btn-success" onclick="runLog()">Load Event History</button>
+				</div>
+			</div>
+			<div class="snail scroll-box" id="logboxscroll">
+				<p><span id="eventlog">Waiting for events...</span></p>
+			</div>
+		</div><br>
+		<!-- SNAILS -->
+		<div id="interfacesnail">
+		<div class="jumbotron" align="center">
+			<div class="row">
+				<div class="col-sm">
+					<h3>ACHILLES - LVL <span id="snaillevel0">?</span></h4>
+					<div class="snail achilles">
+						<button class="btn btn-lg btn-success" onclick="webGrabSnail(0)">GRAB</button>
+						<h5>Cost: <span id="snailcost0">?</span> ETH</h5>
+						<h5>Reward: <span id="grabreward0">?</span> Eggs</h5>
+						<br><br><br><br>
+						<h5>Owner: <span id="snailowner0">?</span></h5>
+						<h5>Eggs: <span id="snailegg0">?</span></h5>
+						<span id="snagbutton0"><button class="btn btn-lg btn-success" onclick="webSnagEgg(0)">SNAG</button></span>
+					</div>
+				</div>
+				<div class="col-sm">
+					<h3>DAEDALUS - LVL <span id="snaillevel1">?</span></h4>
+					<div class="snail daedalus">
+						<button class="btn btn-lg btn-success" onclick="webGrabSnail(1)">GRAB</button>
+						<h5>Cost: <span id="snailcost1">?</span> ETH</h5>
+						<h5>Reward: <span id="grabreward1">?</span> Eggs</h5>
+						<br><br><br><br>
+						<h5>Owner: <span id="snailowner1">?</span></p>
+						<h5>Eggs: <span id="snailegg1">?</span></h5>
+						<span id="snagbutton1"><button class="btn btn-lg btn-success" onclick="webSnagEgg(1)">SNAG</button></span>
+					</div>
+				</div>
+				<div class="col-sm">
+					<h3>HERACLES - LVL <span id="snaillevel2">?</span></h4>
+					<div class="snail heracles">
+						<button class="btn btn-lg btn-success" onclick="webGrabSnail(2)">GRAB</button>
+						<h5>Cost: <span id="snailcost2">?</span> ETH</h5>
+						<h5>Reward: <span id="grabreward2">?</span> Eggs</h5>
+						<br><br><br><br>
+						<h5>Owner: <span id="snailowner2">?</span></p>
+						<h5>Eggs: <span id="snailegg2">?</span></h5>
+						<span id="snagbutton2"><button class="btn btn-lg btn-success" onclick="webSnagEgg(2)">SNAG</button></span>
+					</div>
+				</div>
+				<div class="col-sm">
+					<h3>ICARUS - LVL <span id="snaillevel3">?</span></h4>
+					<div class="snail icarus">
+						<button class="btn btn-lg btn-success" onclick="webGrabSnail(3)">GRAB</button>
+						<h5>Cost: <span id="snailcost3">?</span> ETH</h5>
+						<h5>Reward: <span id="grabreward3">?</span> Eggs</h5>
+						<br><br><br><br>
+						<h5>Owner: <span id="snailowner3">?</span></p>
+						<h5>Eggs: <span id="snailegg3">?</span></h5>
+						<span id="snagbutton3"><button class="btn btn-lg btn-success" onclick="webSnagEgg(3)">SNAG</button></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="jumbotron border6">
+			<div align="center">
+				<h3>Hibernation since <span id="timesinceflip">?</span></h3>
+				<h4>+<span id="flipbonus">?</span>% Eggs on next Grab</h4>
+			</div>
+		</div>
+		<div class="jumbotron" align="center">
+			<div class="row">
+				<div class="col-sm">
+					<h3>JASON - LVL <span id="snaillevel4">?</span></h4>
+					<div class="snail jason">
+						<button class="btn btn-lg btn-success" onclick="webGrabSnail(4)">GRAB</button>
+						<h5>Cost: <span id="snailcost4">?</span> ETH</h5>
+						<h5>Reward: <span id="grabreward4">?</span> Eggs</h5>
+						<br><br><br><br>
+						<h5>Owner: <span id="snailowner4">?</span></h5>
+						<h5>Eggs: <span id="snailegg4">?</span></h5>
+						<span id="snagbutton4"><button class="btn btn-lg btn-success" onclick="webSnagEgg(4)">SNAG</button></span>
+					</div>
+				</div>
+				<div class="col-sm">
+					<h3>ODYSSEUS - LVL <span id="snaillevel5">?</span></h4>
+					<div class="snail odysseus">
+						<button class="btn btn-lg btn-success" onclick="webGrabSnail(5)">GRAB</button>
+						<h5>Cost: <span id="snailcost5">?</span> ETH</h5>
+						<h5>Reward: <span id="grabreward5">?</span> Eggs</h5>
+						<br><br><br><br>
+						<h5>Owner: <span id="snailowner5">?</span></p>
+						<h5>Eggs: <span id="snailegg5">?</span></h5>
+						<span id="snagbutton5"><button class="btn btn-lg btn-success" onclick="webSnagEgg(5)">SNAG</button></span>
+					</div>
+				</div>
+				<div class="col-sm">
+					<h3>PERSEUS - LVL <span id="snaillevel6">?</span></h4>
+					<div class="snail perseus">
+						<button class="btn btn-lg btn-success" onclick="webGrabSnail(6)">GRAB</button>
+						<h5>Cost: <span id="snailcost6">?</span> ETH</h5>
+						<h5>Reward: <span id="grabreward6">?</span> Eggs</h5>
+						<br><br><br><br>
+						<h5>Owner: <span id="snailowner6">?</span></p>
+						<h5>Eggs: <span id="snailegg6">?</span></h5>
+						<span id="snagbutton6"><button class="btn btn-lg btn-success" onclick="webSnagEgg(6)">SNAG</button></span>
+					</div>
+				</div>
+				<div class="col-sm">
+					<h3>THESEUS - LVL <span id="snaillevel7">?</span></h4>
+					<div class="snail theseus">
+						<button class="btn btn-lg btn-success" onclick="webGrabSnail(7)">GRAB</button>
+						<h5>Cost: <span id="snailcost7">?</span> ETH</h5>
+						<h5>Reward: <span id="grabreward7">?</span> Eggs</h5>
+						<br><br><br><br>
+						<h5>Owner: <span id="snailowner7">?</span></p>
+						<h5>Eggs: <span id="snailegg7">?</span></h5>
+						<span id="snagbutton7"><button class="btn btn-lg btn-success" onclick="webSnagEgg(7)">SNAG</button></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- LORDS -->
+		<div id="interfacelord">
+		<div class="jumbotron" align="center">
+			<div class="row">
+				<div class="col-sm">
+					<h3>ARISTOTLE</h4>
+					<h5>Lord of Achilles</h5>
+					<div class="snail">
+						<img src="img/aristotle.png" height="128">
+						<h5>Owner: <span id="lordowner0">?</span></h5>
+						<h5>Cost: <span id="lordcost0">?</span> ETH</h5>
+						<button class="btn btn-lg btn-success" onclick="webClaimLord(0)">CLAIM LORD</button>
+					</div>
+				</div>
+				<div class="col-sm">
+					<h3>DIOGENES</h4>
+					<h5>Lord of Daedalus</h5>
+					<div class="snail">
+						<img src="img/diogenes.png" height="128">
+						<h5>Owner: <span id="lordowner1">?</span></h5>
+						<h5>Cost: <span id="lordcost1">?</span> ETH</h5>
+						<button class="btn btn-lg btn-success" onclick="webClaimLord(1)">CLAIM LORD</button>
+					</div>
+				</div>
+				<div class="col-sm">
+					<h3>HERACLITUS</h4>
+					<h5>Lord of Heracles</h5>
+					<div class="snail">
+						<img src="img/heraclitus.png" height="128">
+						<h5>Owner: <span id="lordowner2">?</span></h5>
+						<h5>Cost: <span id="lordcost2">?</span> ETH</h5>
+						<button class="btn btn-lg btn-success" onclick="webClaimLord(2)">CLAIM LORD</button>
+					</div>
+				</div>
+				<div class="col-sm">
+					<h3>CHRYSIPPUS</h4>
+					<h5>Lord of Icarus</h5>
+					<div class="snail">
+						<img src="img/chrysippus.png" height="128">
+						<h5>Owner: <span id="lordowner3">?</span></h5>
+						<h5>Cost: <span id="lordcost3">?</span> ETH</h5>
+						<button class="btn btn-lg btn-success" onclick="webClaimLord(3)">CLAIM LORD</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="jumbotron border6">
+			<div align="center">
+				<h3>Last Claim: <span id="timesinceclaim">?</span> ago</h3>
+				<h4>Next Lord gets <span id="claimbonus">?</span> free Eggs</h4>
+			</div>
+		</div>
+		<div class="jumbotron" align="center">
+			<div class="row">
+				<div class="col-sm">
+					<h3>SOCRATES</h4>
+					<h5>Lord of Jason</h5>
+					<div class="snail">
+						<img src="img/socrates.png" height="128">
+						<h5>Owner: <span id="lordowner4">?</span></h5>
+						<h5>Cost: <span id="lordcost4">?</span> ETH</h5>
+						<button class="btn btn-lg btn-success" onclick="webClaimLord(4)">CLAIM LORD</button>
+					</div>
+				</div>
+				<div class="col-sm">
+					<h3>ZENO</h4>
+					<h5>Lord of Odysseus</h5>
+					<div class="snail">
+						<img src="img/zeno.png" height="128">
+						<h5>Owner: <span id="lordowner5">?</span></h5>
+						<h5>Cost: <span id="lordcost5">?</span> ETH</h5>
+						<button class="btn btn-lg btn-success" onclick="webClaimLord(5)">CLAIM LORD</button>
+					</div>
+				</div>
+				<div class="col-sm">
+					<h3>PLATO</h4>
+					<h5>Lord of Perseus</h5>
+					<div class="snail">
+						<img src="img/plato.png" height="128">
+						<h5>Owner: <span id="lordowner6">?</span></h5>
+						<h5>Cost: <span id="lordcost6">?</span> ETH</h5>
+						<button class="btn btn-lg btn-success" onclick="webClaimLord(6)">CLAIM LORD</button>
+					</div>
+				</div>
+				<div class="col-sm">
+					<h3>THALES</h4>
+					<h5>Lord of Theseus</h5>
+					<div class="snail">
+						<img src="img/thales.png" height="128">
+						<h5>Owner: <span id="lordowner7">?</span></h5>
+						<h5>Cost: <span id="lordcost7">?</span> ETH</h5>
+						<button class="btn btn-lg btn-success" onclick="webClaimLord(7)">CLAIM LORD</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<br>
+		<!-- PLAYER STATS -->
+		<div class="jumbotron border6" align="center">
+			<h2>NEST</h2>
+			<div class="row">
+				<div class="col-sm ether">
+					<br><br><br><br><div class="snail"><h4>You earned <span id="playerbalance">?</span> ETH</h3></div><br><br><br><br>
+				</div>
+				<div class="col-sm egg">
+					<br><br><br><br><div class="snail"><h4>You own <span id="playeregg">?</span> Eggs</h3></div><br><br><br><br>
+				</div>
+			</div>
+			<button class="btn btn-lg btn-success" onclick="webWithdrawBalance()">WITHDRAW ETH</button>
+		</div>
+		<br>
+		<!-- MISC ACTIONS -->
+		<div class="jumbotron" align="center">	
+			<h3>MISCELLANEOUS</h3><br>
+			<div class="row">
+				<div class="col-sm">
+					<h4>SnailPot: <span id="snailpot">?</span> ETH</h3>
+					<span id="startbutton"><button class="btn btn-lg btn-success" onclick="webBeginRound()">BEGIN ROUND</button></span>
+				</div>
+				<div class="col-sm snail">
+					<h4>Contract Balance:</h4>
+					<h4><span id="contractbalance">?</span> ETH</h4>
+				</div>
+				<div class="col-sm">
+					<h4>ThronePot: <span id="thronepot">?</span> ETH</h3>
+					<button class="btn btn-lg btn-success" onclick="webPayThrone()">PAY THRONE</button>
+				</div>
+			</div>
+		</div>
+		<br>
+		<!-- QUICK START -->
+		<div id="info" class="jumbotron border6">
+			<h3 align="center">QUICK START</h3><br>
+			<h5>Lords of the Snails is a hot potato game played in rounds.</h5>
+			<h5>Get enough Eggs to earn the prize.</h5>
+			<h5>Once you reach the requirement, you win and all your Eggs are consumed.</h5>
+			<br>
+			<div class="info">
+				<h4>WHILE THE ROUND IS ACTIVE</h4>
+			</div>
+			<br>
+			<h5>1) Grab a Snail to earn his Eggs.</h5>
+			<h6>- Grabbing a Snail raises his level. Higher level Snail = higher ETH cost and higher Egg production.</h5>
+			<h6>- Hibernation: the longer the game goes without anyone Grabbing any Snail, the bigger Egg bonus</h5>
+			<h6>- Any given Snail can only be owned by one player, but you can own several different Snails at once.</h5>
+			<br>
+			<h5>2) While you own a Snail, Snag his Eggs at your convenience.</h5>
+			<h6>- Snagging comes with a small ETH cost, and doesn't give you the Hibernate bonus.
+			<h6>- You can Grab your own Snail if you want the Hibernate bonus.
+			<h6>- If someone else Grabs your Snail, you gain no Eggs, but you get the ETH you spent back!</h5>
+			<br>
+			<div class="info">
+				<h4>ONCE ANY PLAYER REACHES THE REQUIRED AMOUNT OF EGGS, THE ROUND IS OVER</h4>
+			</div>
+			<br>
+			<h5>The game goes on downtime, during which players can claim Lords.</h5>
+			<h6>Owning a Lord allows you to own the corresponding Snail at the beginning of a round.</h5>
+			<h6>You can then Snag immediately... Or get "free" ETH, if someone else Grabs your Snail!</h5>
+			<h6>Additionally, Lords get paid tribute ETH whenever any action occurs on their Snail.</h5>
+			<br>
+			<h5>Only one player can be a specific Lord, but you can be several Lords at once.</h5>
+			<h6>The ETH cost of a given Lord increases each time a new player claims it.</h5>
+			<h6>On a claim, the previous Lord receives the ETH he spent, plus a small bonus.</h5>
+			<br>
+			<h5>Claiming a Lord also gives you a bonus amount of Eggs.</h5>
+			<h6>This bonus rises while nobody claims a Lord.</h5>
+			<h6>It's possible to earn enough Eggs to win this way, but you'll have to wait for the next round to start and then Snag or Grab.</h5>
+			<br>
+			<div class="info">
+				<h4>ONE DAY LATER, A NEW ROUND BEGINS</h4>
+			</div>
+			<br>
+			<h5>After 24 hours, any player can start the new round.</h5>
+			<h6>Players who didn't win keep their accumulated Eggs.</h5>
+			<h6>However, the number of Eggs required to win increases.</h5>
+			<h6>Snail level, cost, Eggs and Egg production are reset to their base level.</h5>
+			<h6>Each Lord receives their Snail.</h5>
+			<br>
+			<h5>The game runs forever, as long as players choose to start it!</h5>
+			<br>
+			<div class="info">
+				<h4>SNAILTHRONE</h4>
+			</div>
+			<br>
+			<h5>Lords of the Snails is part of the SnailThrone ecosystem.</h5>
+			<h6>Part of the ETH used in Lords of the Snails goes to the SnailThrone pot.</h5>
+			<h6>Any player can send this pot at no cost to the SnailThrone contract.</h5>
+			<br>
+			<h5>SnailThrone players receive their share of the ETH in the form of dividends.</h5>
+			<br><br>
+			<h3 align="center"><a href="https://snailking.github.io/snailthrone" target="_blank">>> CHECK OUT SNAILTHRONE <<</a>
+			<br>
+		</div>
+		<br>
+		<!-- GAME MECHANICS -->
+		<div class="jumbotron">
+			<h3 align="center">GAME MECHANICS</h3><br>
+			<div class="info">
+				<h4>ROUNDS</h4>
+			</div>
+			<br>
+			<h6>At the beginning of each round, the winning prize is set at 10% of the SnailPot.</h6>
+			<h6>The amount of Eggs required to win is set at 1 000 000 * Round.</h6>
+			<h6>On Round 8 with a SnailPot of 3 ETH, you'd need 8 000 000 Eggs to win, and your prize would be 0.3 ETH.</h6>
+			<h6>Rounds last until a player wins, then the 24 hours downtime period starts.</h6>
+			<br>
+			<div class="info">
+				<h4>SNAILS</h4>
+			</div>
+			<br>
+			<h6>Each Snail starts at LVL 1 on a new round.</h6>
+			<h6>Snails produce 1 Egg per second per level.</h6>
+			<h6>A LVL 3 Snail would produce 180 Eggs in a minute.</h6>
+			<br>
+			<h6>The cost of Grabbing a Snail is set at 0.01 ETH * (LVL + 1).</h6>
+			<h6>To Grab a LVL 3 Snail, you need 0.01 * (3 + 1) = 0.04 ETH.</h6>
+			<h6>All but 0.01 of that ETH is sent to the previous owner.</h6>
+			<br>
+			<h6>Snagging Eggs has a fixed cost of 0.002 ETH.</h6>
+			<h6>A Snag gives you the Snail's Eggs, without a bonus.</h6>
+			<h6>The Grab bonus is global, and rises by 1% every minute.</h6>
+			<h6>After one hour, a Snail with 1000 Eggs would pay out 1600 Eggs on a Grab.</h6>
+			<h6>Snails can only be Grabbed or Snagged while the round is active.</h6>
+			<br>
+			<div class="info">
+				<h4>LORDS</h4>
+			</div>
+			<br>
+			<h6>Lords start at a fixed cost of 0.1 ETH.</h6>
+			<h6>This cost rises by 0.05 ETH with each claim.</h6>
+			<h6>All but 0.04 of the ETH goes to the previous owner.</h6>
+			<br>
+			<h6>Lord Tribute is given whenever a Grab, Snag or Claim action occurs on your Snail or Lord.</h6>
+			<h6>Tribute amounts to 10% of the bonus ETH of these transactions.</h6>
+			<br>
+			<h6>The Lord Egg bonus for Lords is similar to the Grab bonus.</h6>
+			<h6>As Lords don't produce Eggs directly, so this bonus is a flat rate.</h6>
+			<h6>The bonus is set at 8 Eggs per second per round.</h6>
+			<h6>On Round 8, after 4 hours without any claim, becoming the Lord would yield:</h6>
+			<h6>(8 * 60 * 60 * 4 * 8) = 921 600 Eggs
+			<h6>The bonus timer is reset on a round win, and downtime can never exceed 24 hours.</h6>
+			<br>
+			<div class="info">
+				<h4>ETHER SPLIT</h4>
+			</div>
+			<br>
+			<h6>Most of the ETH of Grab and Snag goes into repaying the previous owner.</h6>
+			<br>
+			<h6>The remainder, as well as the 0.002 ETH fee of Snag, is split as such:</h6>
+			<h6>- 80% SnailPot</h6>
+			<h6>- 10% ThronePot</h6>
+			<h6>- 10% Tribute to the Lord of the Snail</h6>
+			<br>
+			<div class="row">
+				<div class="col-sm">
+				</div>
+				<div class="col-sm-1 snail" align="center">
+					<a href="#top"><img height="48" src="img/arrow_circle.png"></a>
+				</div>
+				<div class="col-sm">
+				</div>
+			</div>
+		</div>
+		<!-- MODALS -->
+		<div id="startmodal" class="modal">
+			<div class="jumbotron modal-content" align="center">
+				<h3>CAN'T START ROUND!</h3><br>
+				<div class="snail">
+					<h5>The round can only be started during downtime, after the timer hits 0.</h5>
+					<h5>Check the top of the page before trying to start a round.</h5>
+				</div>
+				<div class="container">
+					<button type="button" class="btn btn-success" onclick="CloseModal()">Got it!</button>
+				</div>
+			</div>
+		</div>
+		<div id="snagmodal" class="modal">
+			<div class="jumbotron modal-content" align="center">
+				<h3>CAN'T SNAG!</h3><br>
+				<div class="snail">
+					<h5>You must own this Snail in order to Snag his Eggs.</h5>
+					<h5>Grab the Snail first, then you'll be able to Snag.</h5>
+				</div>
+				<div class="container">
+					<button type="button" class="btn btn-success" onclick="CloseModal()">Got it!</button>
+				</div>
+			</div>
+		</div>
+		<!-- JAVASCRIPT -->
+		<script src="lords_snails.js"></script>				
+		<script>
+			initUpdate();
+		</script>		
+	</body>
+</html>
