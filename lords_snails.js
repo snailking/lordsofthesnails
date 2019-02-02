@@ -2,7 +2,8 @@
 //var contractAddress="0x40D31F904Af622cfd3F3C4EFCcEb06C564F89eCe"; //ROPSTEN 2
 //var contractAddress="0xE0aF939d88eE2f7dACe1161cf910A8d300019D39"; //ROPSTEN 2.1
 //var contractAddress="0x1443B778622e66924Af7B64c3dfb1A8B700AB0E8"; //ROPSTEN 3
-var contractAddress="0xd0AD02a47132D4D9b7c557ff77Fb3e5C65B3942d"; //ROPSTEN 5
+//var contractAddress="0xd0AD02a47132D4D9b7c557ff77Fb3e5C65B3942d"; //ROPSTEN 5
+var contractAddress="0x2a26b5d1eed284f403492044ef4106ef0ed9c60a"; //MAINNET
 
 //-- WEB3 DETECTION --//
 var web3;
