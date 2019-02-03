@@ -1415,8 +1415,8 @@ grabbedsnailEvent.watch(function(error, result){
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " grabs " + idSnailToName(web3.toDecimal(result.args.snail)) + " for " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH, and gets " + result.args.egg + " eggs.";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
-			e_challenger.address = result[i].args.player;
-			e_challenger.egg =  parseInt(result[i].args.playeregg);
+			e_challenger.address = result.args.player;
+			e_challenger.egg =  parseInt(result.args.playeregg);
 			computeLeaderboard();
 		}
 	}
@@ -1431,8 +1431,8 @@ snaggedeggEvent.watch(function(error, result){
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " snags " + result.args.egg + " eggs from his snail " + idSnailToName(web3.toDecimal(result.args.snail)) + ".";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
-			e_challenger.address = result[i].args.player;
-			e_challenger.egg =  parseInt(result[i].args.playeregg);
+			e_challenger.address = result.args.player;
+			e_challenger.egg =  parseInt(result.args.playeregg);
 			computeLeaderboard();
 		}
 	}
@@ -1447,8 +1447,8 @@ claimedlordEvent.watch(function(error, result){
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " claims the lord " + idLordToName(web3.toDecimal(result.args.lord)) + "! For their " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH, they get " + result.args.egg + " eggs.";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
-			e_challenger.address = result[i].args.player;
-			e_challenger.egg =  parseInt(result[i].args.playeregg);
+			e_challenger.address = result.args.player;
+			e_challenger.egg =  parseInt(result.args.playeregg);
 			computeLeaderboard();
 		}
 	}
