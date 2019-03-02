@@ -1088,7 +1088,7 @@ function ComputeLordBonus(callback){
 
 function BeginRound(callback){  
     var outputData = myContract.BeginRound.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData, gasLimit: 1000000},
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},//, gasLimit: 1000000},
     function(error,result){
         if(!error){
             //console.log('BeginRound ',result);
